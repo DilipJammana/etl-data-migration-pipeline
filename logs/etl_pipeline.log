@@ -1,0 +1,55 @@
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-10-05 15:34:53 | INFO     | __main__:__init__:40 - ETL Orchestrator initialized
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:81 - Starting full ETL pipeline - Run ID: run_20251122_153453
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:87 - ============================================================
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:88 - PHASE 1: EXTRACT
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:89 - ============================================================
+2024-10-05 15:34:53 | INFO     | src.extract.csv_extractor:__init__:26 - CSV Extractor initialized with path: data/source/
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:173 - Extracting from CSV: orders
+2024-10-05 15:34:53 | INFO     | src.extract.csv_extractor:extract:44 - Extracting from: data\source\orders.csv
+2024-10-05 15:34:53 | INFO     | src.extract.csv_extractor:extract:59 - Successfully extracted 5083 rows from orders.csv
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:177 - Extracted 5083 records from orders
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:173 - Extracting from CSV: customers
+2024-10-05 15:34:53 | INFO     | src.extract.csv_extractor:extract:44 - Extracting from: data\source\customers.csv
+2024-10-05 15:34:53 | INFO     | src.extract.csv_extractor:extract:59 - Successfully extracted 1000 rows from customers.csv
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:177 - Extracted 1000 records from customers
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:190 - Extracting from SQLite: products
+2024-10-05 15:34:53 | INFO     | __main__:_extract_phase:194 - Extracted 200 records from products
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:97 - ============================================================
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:98 - PHASE 2: TRANSFORM
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:99 - ============================================================
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:225 - Transforming: orders
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:229 -   - Cleansing orders
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:233 -   - Validating orders
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:242 -   - Applying business logic to orders
+2024-10-05 15:34:53 | SUCCESS  | __main__:_transform_phase:246 - Transformed 5083 records for orders
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:225 - Transforming: customers
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:229 -   - Cleansing customers
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:233 -   - Validating customers
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:242 -   - Applying business logic to customers
+2024-10-05 15:34:53 | SUCCESS  | __main__:_transform_phase:246 - Transformed 1000 records for customers
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:225 - Transforming: products
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:229 -   - Cleansing products
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:233 -   - Validating products
+2024-10-05 15:34:53 | INFO     | __main__:_transform_phase:242 -   - Applying business logic to products
+2024-10-05 15:34:53 | SUCCESS  | __main__:_transform_phase:246 - Transformed 200 records for products
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:103 - ============================================================
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:104 - PHASE 3: LOAD
+2024-10-05 15:34:53 | INFO     | __main__:run_full_pipeline:105 - ============================================================
+2024-10-05 15:34:54 | INFO     | __main__:_load_phase:301 - Loading: orders (full mode)
+2024-10-05 15:34:54 | SUCCESS  | __main__:_load_phase:311 - Loaded 5083 records to orders
+2024-10-05 15:34:54 | INFO     | __main__:_load_phase:301 - Loading: customers (full mode)
+2024-10-05 15:34:54 | SUCCESS  | __main__:_load_phase:311 - Loaded 1000 records to customers
+2024-10-05 15:34:54 | INFO     | __main__:_load_phase:301 - Loading: products (full mode)
+2024-10-05 15:34:55 | SUCCESS  | __main__:_load_phase:311 - Loaded 200 records to products
+2024-10-05 15:34:55 | SUCCESS  | __main__:run_full_pipeline:110 - ETL Pipeline completed successfully - Run ID: run_20251122_153453
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:323 - ============================================================
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:324 - PIPELINE EXECUTION SUMMARY
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:325 - ============================================================
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:326 - Run ID: run_20251122_153453
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:327 - Status: SUCCESS
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:328 - Duration: 0.00 seconds
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:329 - Records Extracted: 0
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:330 - Records Loaded: 0
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:331 - Quality Score: 100.00%
+2024-10-05 15:34:55 | INFO     | __main__:_print_summary:332 - ============================================================

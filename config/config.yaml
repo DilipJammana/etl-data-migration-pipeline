@@ -1,0 +1,113 @@
+# ETL Configuration File
+# Adjust these settings based on your environment
+
+source:
+  # CSV source files
+  csv_path: "data/source/"
+  
+  # SQLite legacy database
+  sqlite_db: "data/source/legacy.db"
+  
+  # API sources (future)
+  api_base_url: "https://api.example.com"
+  api_key: "${API_KEY}"  # Set via environment variable
+
+target:
+  host: "127.0.0.1"
+  port: 5432
+  database: "etl_warehouse"
+  user: "postgres"
+  password: "postgres123"
+  schema: "public"
+
+
+
+  
+pipeline:
+  # Processing settings
+  batch_size: 10000
+  max_retries: 3
+  retry_delay_seconds: 5
+  timeout_seconds: 300
+  parallel_jobs: 4
+  
+  # Table processing order (maintains referential integrity)
+  processing_order:
+    - "customers"
+    - "products"
+    - "orders"
+
+transform:
+  # Data cleansing rules
+  remove_duplicates: true
+  handle_nulls: "fill"  # Options: fill, drop, ignore
+  null_fill_strategy:
+    numeric: 0
+    text: "UNKNOWN"
+    date: "1900-01-01"
+  
+  # Data validation
+  strict_mode: false  # If true, fail on any validation error
+  
+quality:
+  # Data quality thresholds
+  min_quality_score: 95.0
+  fail_on_low_quality: false
+  
+  # Quality checks to perform
+  checks:
+    - completeness
+    - uniqueness
+    - validity
+    - consistency
+    - accuracy
+  
+  # Specific field validations
+  field_rules:
+    email:
+      - format: "email"
+      - required: true
+    phone:
+      - format: "phone"
+    zip_code:
+      - length: [5, 10]
+    price:
+      - range: [0, 1000000]
+      - required: true
+
+monitoring:
+  # Logging configuration
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_path: "logs/etl_pipeline.log"
+  log_rotation: "100 MB"
+  log_retention_days: 30
+  
+  # Alerting
+  enable_alerts: true
+  alert_email: "data-team@company.com"
+  alert_on_failure: true
+  alert_on_quality_issues: true
+  
+  # Metrics
+  track_metrics: true
+  metrics_port: 9090
+
+incremental:
+  # Incremental loading configuration
+  enabled: true
+  
+  # Timestamp columns for CDC
+  timestamp_columns:
+    orders: "updated_at"
+    customers: "last_modified"
+    products: "updated_at"
+  
+  # Fallback to full load if incremental fails
+  fallback_to_full: true
+
+performance:
+  # Performance optimization
+  use_bulk_insert: true
+  chunk_size: 5000
+  connection_pool_size: 10
+  enable_parallel_processing: true
